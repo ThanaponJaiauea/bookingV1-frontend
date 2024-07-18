@@ -98,7 +98,7 @@ export default function Header() {
       </div>
 
       {/* RIGHT login user */}
-      {/* <div className="w-3/12 h-full flex justify-center pt-5">
+      <div className="w-3/12 h-full flex justify-center pt-5">
         <div className="h-10 flex items-center gap-8">
           <p>
             ให้เช่าที่พักกับ <span className="font-bold">Airbnb</span>
@@ -136,7 +136,7 @@ export default function Header() {
             </div>
           )}
         </div>
-      </div> */}
+      </div>
     </div>
   )
 }
