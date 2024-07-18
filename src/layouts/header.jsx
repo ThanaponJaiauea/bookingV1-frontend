@@ -5,6 +5,7 @@ import {IoSearchOutline} from "react-icons/io5"
 import {TbWorld} from "react-icons/tb"
 import {GiHamburgerMenu} from "react-icons/gi"
 import defaultProfileUser from "../pictures/user/logo-user.png"
+import {Link} from "react-router-dom"
 
 export default function Header() {
   const mocDataNavbar = [
@@ -44,10 +45,10 @@ export default function Header() {
   return (
     <div className="w-full h-[160px] flex items-center border-b-[1px]">
       {/* LEFT logo */}
-      <button className="w-2/12 h-full flex items-center justify-center text-[#ff385c]">
+      <Link className="w-2/12 h-full flex items-center justify-center text-[#ff385c]">
         <FaAirbnb className="w-16 h-16" />
         <p className="text-3xl font-bold">airbnb</p>
-      </button>
+      </Link>
 
       {/* CENTER navbar */}
       <div className="w-7/12 h-full flex flex-col items-center gap-6 pt-5">
@@ -97,7 +98,7 @@ export default function Header() {
       </div>
 
       {/* RIGHT login user */}
-      <div className="w-3/12 h-full flex justify-center pt-5">
+      {/* <div className="w-3/12 h-full flex justify-center pt-5">
         <div className="h-10 flex items-center gap-8">
           <p>
             ให้เช่าที่พักกับ <span className="font-bold">Airbnb</span>
@@ -135,7 +136,7 @@ export default function Header() {
             </div>
           )}
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
