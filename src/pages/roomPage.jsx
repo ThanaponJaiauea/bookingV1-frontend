@@ -5,7 +5,7 @@ import {BsGrid3X3Gap} from "react-icons/bs"
 import {FaStar} from "react-icons/fa6"
 import {DiStackoverflow, DiApple, DiAtom} from "react-icons/di"
 import {FaAngleDown, FaAngleUp} from "react-icons/fa6"
-import {useState} from "react"
+import {useEffect, useRef, useState} from "react"
 import {Link} from "react-router-dom"
 
 export default function RoomPage() {
@@ -51,6 +51,48 @@ export default function RoomPage() {
   ]
 
   const [openModal, setOpenModal] = useState(false)
+
+  const [adult, setAdult] = useState(1)
+  const [child, setChild] = useState(0)
+  const [infant, setInfant] = useState(0)
+  const [quantity, setQuantity] = useState()
+
+  const incrementGuests = (type) => {
+    if (type === "adult" && adult < 4 - child - infant) setAdult(adult + 1)
+    if (type === "child" && child < 4 - adult - infant) setChild(child + 1)
+    if (type === "infant" && infant < 4 - adult - child) setInfant(infant + 1)
+  }
+
+  const decrementGuests = (type) => {
+    if (type === "adult" && adult > 1) setAdult(adult - 1)
+    if (type === "child" && child > 0) setChild(child - 1)
+    if (type === "infant" && infant > 0) setInfant(infant - 1)
+  }
+
+  useEffect(() => {
+    setQuantity(adult + child + infant)
+  }, [adult, child, infant])
+
+  const buttonRef = useRef()
+  const modalRef = useRef()
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target) &&
+        modalRef.current &&
+        !modalRef.current.contains(event.target)
+      ) {
+        setOpenModal(false)
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [buttonRef, modalRef])
 
   return (
     <div className="w-8/12 m-auto mt-5 mb-20 flex flex-col gap-8">
@@ -193,11 +235,12 @@ export default function RoomPage() {
                   </div>
 
                   <button
+                    ref={buttonRef}
                     onClick={() => setOpenModal(!openModal)}
                     className="relative border w-full h-[56px] rounded-bl-lg border-gray-500 rounded-br-lg border-t-0 flex items-center justify-between px-4 py-2">
                     <div className="text-start">
                       <p className="text-xs font-bold">ผู้เข้าพัก</p>
-                      <p>ผู้เข้าพัก 1 คน</p>
+                      <p>ผู้เข้าพัก {quantity} คน</p>
                     </div>
 
                     {openModal ? (
@@ -207,7 +250,10 @@ export default function RoomPage() {
                     )}
 
                     {openModal && (
-                      <div className="absolute border-2 w-full bg-white z-[99] top-14 right-0 left-0 rounded-md p-3 flex flex-col gap-8">
+                      <div
+                        ref={modalRef}
+                        onClick={(e) => e.stopPropagation()}
+                        className="absolute border-2 w-full bg-white z-[99] top-14 right-0 left-0 rounded-md p-3 flex flex-col gap-8">
                         {guestsData?.map((el, idx) => (
                           <div
                             key={idx}
@@ -218,13 +264,51 @@ export default function RoomPage() {
                             </div>
 
                             <div className="flex items-center gap-2">
-                              <button className="border-2 rounded-full w-8 h-8">
+                              <button
+                                onClick={() =>
+                                  decrementGuests(
+                                    el.id === 1
+                                      ? "adult"
+                                      : el.id === 2
+                                      ? "child"
+                                      : "infant"
+                                  )
+                                }
+                                className="border-2 rounded-full w-8 h-8"
+                                disabled={
+                                  (el.id === 1 && adult === 1) ||
+                                  (el.id === 2 && child === 0) ||
+                                  (el.id === 3 && infant === 0)
+                                }>
                                 -
                               </button>
 
-                              <p>1</p>
+                              <p>
+                                {el.id === 1
+                                  ? adult
+                                  : el.id === 2
+                                  ? child
+                                  : el.id === 3
+                                  ? infant
+                                  : 0}
+                              </p>
 
-                              <button className="border-2 rounded-full w-8 h-8">
+                              <button
+                                onClick={() =>
+                                  incrementGuests(
+                                    el.id === 1
+                                      ? "adult"
+                                      : el.id === 2
+                                      ? "child"
+                                      : "infant"
+                                  )
+                                }
+                                className="border-2 rounded-full w-8 h-8"
+                                disabled={
+                                  (el.id === 1 && adult === 4) ||
+                                  (el.id === 2 && child === 4) ||
+                                  (el.id === 3 && infant === 4)
+                                }>
                                 +
                               </button>
                             </div>
@@ -236,9 +320,11 @@ export default function RoomPage() {
                           และห้ามนำสัตว์เลี้ยงเข้า
                         </p>
 
-                        <div className="flex items-center justify-end underline">
-                          <p>ปิด</p>
-                        </div>
+                        <button
+                          onClick={() => setOpenModal(false)}
+                          className="flex items-center justify-end underline">
+                          ปิด
+                        </button>
                       </div>
                     )}
                   </button>
