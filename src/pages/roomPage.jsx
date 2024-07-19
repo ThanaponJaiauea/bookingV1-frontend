@@ -5,6 +5,8 @@ import {BsGrid3X3Gap} from "react-icons/bs"
 import {FaStar} from "react-icons/fa6"
 import {DiStackoverflow, DiApple, DiAtom} from "react-icons/di"
 import {FaAngleDown, FaAngleUp} from "react-icons/fa6"
+import {useState} from "react"
+import {Link} from "react-router-dom"
 
 export default function RoomPage() {
   const data = [
@@ -40,6 +42,15 @@ export default function RoomPage() {
       title: "รับเงินคืนเต็มจำนวนหากเปลี่ยนใจ",
     },
   ]
+
+  const guestsData = [
+    {id: 1, title1: "ผู้ใหญ่", title2: "อายุ 13 ขึ้นไป"},
+    {id: 2, title1: "เด็ก", title2: "อายุ 2-12 ปี"},
+    {id: 3, title1: "ทารก", title2: "อายุน้อยกว่า 2 ปี"},
+    {id: 4, title1: "สัตว์เลี้ยง", title2: "เดินทางมากับสัตว์ช่วยเหลือใช่ไหม?"},
+  ]
+
+  const [openModal, setOpenModal] = useState(false)
 
   return (
     <div className="w-8/12 m-auto mt-5 mb-20 flex flex-col gap-8">
@@ -97,7 +108,7 @@ export default function RoomPage() {
       {/* BOTTOM Content */}
       <div className="flex">
         {/* LEFT */}
-        <div className="w-2/4 flex flex-col gap-10">
+        <div className="w-3/4 flex flex-col gap-10">
           <div>
             <h1 className="text-[22px] font-medium">
               วิลล่าทั้งหลัง ใน <span className="font-bold">Abiansemal</span>{" "}
@@ -160,17 +171,17 @@ export default function RoomPage() {
         </div>
 
         {/* RIGHT from booking */}
-        <div className="w-2/4 flex items-center justify-center">
-          <div className="w-3/4 border-[1px] h-[500px] bg-white rounded-2xl drop-shadow-xl flex flex-col items-start justify-center p-4">
-            <div className="w-full flex flex-col ">
+        <div className="w-2/4 flex items-center justify-end">
+          <div className="w-3/4 border-[1px] bg-white rounded-2xl drop-shadow-xl flex flex-col items-start justify-center p-4 gap-6">
+            <div className="w-full flex flex-col mt-4 gap-7">
               <h1 className="text-base">
                 <span className="text-[22px] font-semibold">฿18,046 </span> คืน
               </h1>
 
               <div className="w-full flex flex-col items-center justify-center gap-5">
-                <div className="w-full">
+                <div className="w-full cursor-pointer">
                   <div className="w-full flex">
-                    <div className="border border-gray-500 w-2/4 h-[56px] rounded-tl-lg flex flex-col px-4 py-2">
+                    <div className="border border-gray-500 w-2/4 h-[56px] rounded-tl-lg flex flex-col px-4 py-2 $">
                       <p className="text-xs font-bold">เช็คอิน</p>
                       <p>23/9/2024</p>
                     </div>
@@ -181,19 +192,62 @@ export default function RoomPage() {
                     </div>
                   </div>
 
-                  <button className="border border-gray-500 w-full h-[56px] rounded-bl-lg rounded-br-lg border-t-0 flex items-center justify-between px-4 py-2">
+                  <button
+                    onClick={() => setOpenModal(!openModal)}
+                    className="relative border w-full h-[56px] rounded-bl-lg border-gray-500 rounded-br-lg border-t-0 flex items-center justify-between px-4 py-2">
                     <div className="text-start">
                       <p className="text-xs font-bold">ผู้เข้าพัก</p>
                       <p>ผู้เข้าพัก 1 คน</p>
                     </div>
 
-                    <FaAngleDown className="text-xl" />
+                    {openModal ? (
+                      <FaAngleUp className="text-xl" />
+                    ) : (
+                      <FaAngleDown className="text-xl" />
+                    )}
+
+                    {openModal && (
+                      <div className="absolute border-2 w-full bg-white z-[99] top-14 right-0 left-0 rounded-md p-3 flex flex-col gap-8">
+                        {guestsData?.map((el, idx) => (
+                          <div
+                            key={idx}
+                            className="flex itenms-center justify-between">
+                            <div className="flex flex-col text-start">
+                              <p className="text-sm">{el?.title1}</p>
+                              <p className="text-sm">{el?.title2}</p>
+                            </div>
+
+                            <div className="flex items-center gap-2">
+                              <button className="border-2 rounded-full w-8 h-8">
+                                -
+                              </button>
+
+                              <p>1</p>
+
+                              <button className="border-2 rounded-full w-8 h-8">
+                                +
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+
+                        <p className="text-start">
+                          ที่พักนี้รับผู้เข้าพักได้สูงสุด 4 คน ไม่รวมทารก
+                          และห้ามนำสัตว์เลี้ยงเข้า
+                        </p>
+
+                        <div className="flex items-center justify-end underline">
+                          <p>ปิด</p>
+                        </div>
+                      </div>
+                    )}
                   </button>
                 </div>
-
-                <button className="w-full  h-[48px] bg-[#ff385c] rounded-lg text-white">
-                  จอง
-                </button>
+                <Link
+                  to="/confirmAndPay"
+                  className="w-[99%] h-[48px] bg-[#ff385c] rounded-lg text-white">
+                  <button className="w-full h-full">จอง</button>
+                </Link>
 
                 <div>
                   <p className="font-light">ยังไม่มีการเรียกเก็บเงินจากคุณ</p>
@@ -201,7 +255,19 @@ export default function RoomPage() {
               </div>
             </div>
 
-            <div></div>
+            <div className="w-full flex flex-col gap-6 mb-2">
+              <div className="flex items-center justify-between">
+                <p>฿18,000 x 2 คืน</p>
+                <p>฿36,000</p>
+              </div>
+
+              <div className="w-full border-b-2"></div>
+
+              <div className="flex items-center justify-between">
+                <p>ยอดรวม(ไม่รวมภาษี)</p>
+                <p>฿36,000</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
