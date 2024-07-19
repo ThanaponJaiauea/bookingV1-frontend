@@ -120,11 +120,11 @@ export default function Header() {
           </button>
 
           {open && (
-            <div className="absolute w-[14%] top-20 right-20 bg-white shadow-lg rounded-lg">
+            <div className="absolute w-[14%] top-20 right-20 bg-white shadow-lg rounded-lg overflow-hidden z-[9999]">
               <div className="w-full flex flex-col">
                 {mocDataModal?.map((el, idx) => (
                   <React.Fragment key={idx}>
-                    <button className="w-full h-[50px] text-start hover:bg-gray-100 p-4 flex items-center">
+                    <button className="w-full h-[50px] text-start hover:bg-gray-100 p-4 flex items-center ">
                       {el?.title}
                     </button>
                     {idx === 1 && (

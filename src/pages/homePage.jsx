@@ -6,7 +6,8 @@ export default function HomePage() {
   const dataกImages = [
     {
       id: 1,
-      imageUrl: "https://picsum.photos/300/500",
+      imageUrl:
+        "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg",
     },
     // {
     //   id: 2,
@@ -48,8 +49,10 @@ export default function HomePage() {
 
   return (
     <div className="h-screen flex  justify-center">
-      <Link to="/room">
-        <div className="mt-10 flex flex-col gap-3 cursor-pointer">
+      <div className="mt-10 flex flex-col gap-3">
+        <Link
+          to="/room"
+          target="_blank">
           <div className="relative w-[280px] h-[265px] rounded-2xl bg-gray-200 overflow-hidden">
             <FaHeart className="text-lg absolute z-[1] top-5 right-6" />
 
@@ -78,8 +81,8 @@ export default function HomePage() {
               <span className="font-medium">฿16,410</span> คืน
             </p>
           </div>
-        </div>
-      </Link>
+        </Link>
+      </div>
     </div>
   )
 }
