@@ -1,18 +1,18 @@
 /** @format */
-import {FiShare} from "react-icons/fi"
-import {FaHeart} from "react-icons/fa"
-import {BsGrid3X3Gap} from "react-icons/bs"
-import {FaStar} from "react-icons/fa6"
-import {DiStackoverflow, DiApple, DiAtom} from "react-icons/di"
-import {FaAngleDown, FaAngleUp} from "react-icons/fa6"
-import {useEffect, useRef, useState} from "react"
-import {Link} from "react-router-dom"
+import { FiShare } from "react-icons/fi";
+import { FaHeart } from "react-icons/fa";
+import { BsGrid3X3Gap } from "react-icons/bs";
+import { FaStar } from "react-icons/fa6";
+import { DiStackoverflow, DiApple, DiAtom } from "react-icons/di";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function RoomPage() {
   const data = [
-    {id: 1, icon: <FiShare />, title: "แชร์"},
-    {id: 2, icon: <FaHeart />, title: "บันทึก"},
-  ]
+    { id: 1, icon: <FiShare />, title: "แชร์" },
+    { id: 2, icon: <FaHeart />, title: "บันทึก" },
+  ];
 
   const dataImages = [
     "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg",
@@ -20,7 +20,7 @@ export default function RoomPage() {
     "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg",
     "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg",
     "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg",
-  ]
+  ];
 
   const dataDescription = [
     {
@@ -41,58 +41,62 @@ export default function RoomPage() {
       header: "ยกเลิกฟรีก่อนวันที่ 24 ส.ค",
       title: "รับเงินคืนเต็มจำนวนหากเปลี่ยนใจ",
     },
-  ]
+  ];
 
   const guestsData = [
-    {id: 1, title1: "ผู้ใหญ่", title2: "อายุ 13 ขึ้นไป"},
-    {id: 2, title1: "เด็ก", title2: "อายุ 2-12 ปี"},
-    {id: 3, title1: "ทารก", title2: "อายุน้อยกว่า 2 ปี"},
-    {id: 4, title1: "สัตว์เลี้ยง", title2: "เดินทางมากับสัตว์ช่วยเหลือใช่ไหม?"},
-  ]
+    { id: 1, title1: "ผู้ใหญ่", title2: "อายุ 13 ขึ้นไป" },
+    { id: 2, title1: "เด็ก", title2: "อายุ 2-12 ปี" },
+    { id: 3, title1: "ทารก", title2: "อายุน้อยกว่า 2 ปี" },
+    {
+      id: 4,
+      title1: "สัตว์เลี้ยง",
+      title2: "เดินทางมากับสัตว์ช่วยเหลือใช่ไหม?",
+    },
+  ];
 
-  const [openModal, setOpenModal] = useState(false)
+  const [openModal, setOpenModal] = useState(false);
 
-  const [adult, setAdult] = useState(1)
-  const [child, setChild] = useState(0)
-  const [infant, setInfant] = useState(0)
-  const [quantity, setQuantity] = useState()
+  const [adult, setAdult] = useState(1);
+  const [child, setChild] = useState(0);
+  const [infant, setInfant] = useState(0);
+  const [quantity, setQuantity] = useState();
 
-  const incrementGuests = (type) => {
-    if (type === "adult" && adult < 4 - child - infant) setAdult(adult + 1)
-    if (type === "child" && child < 4 - adult - infant) setChild(child + 1)
-    if (type === "infant" && infant < 4 - adult - child) setInfant(infant + 1)
-  }
+  const incrementGuests = type => {
+    if (type === "adult" && adult < 4 - child - infant) setAdult(adult + 1);
+    if (type === "child" && child < 4 - adult - infant) setChild(child + 1);
+    if (type === "infant" && infant < 4 - adult - child) setInfant(infant + 1);
+  };
 
-  const decrementGuests = (type) => {
-    if (type === "adult" && adult > 1) setAdult(adult - 1)
-    if (type === "child" && child > 0) setChild(child - 1)
-    if (type === "infant" && infant > 0) setInfant(infant - 1)
-  }
-
-  useEffect(() => {
-    setQuantity(adult + child + infant)
-  }, [adult, child, infant])
-
-  const buttonRef = useRef()
-  const modalRef = useRef()
+  const decrementGuests = type => {
+    if (type === "adult" && adult > 1) setAdult(adult - 1);
+    if (type === "child" && child > 0) setChild(child - 1);
+    if (type === "infant" && infant > 0) setInfant(infant - 1);
+  };
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    setQuantity(adult + child + infant);
+  }, [adult, child, infant]);
+
+  const buttonRef = useRef();
+  const modalRef = useRef();
+
+  useEffect(() => {
+    const handleClickOutside = event => {
       if (
         buttonRef.current &&
         !buttonRef.current.contains(event.target) &&
         modalRef.current &&
         !modalRef.current.contains(event.target)
       ) {
-        setOpenModal(false)
+        setOpenModal(false);
       }
-    }
+    };
 
-    document.addEventListener("mousedown", handleClickOutside)
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [buttonRef, modalRef])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [buttonRef, modalRef]);
 
   return (
     <div className="w-8/12 m-auto mt-5 mb-20 flex flex-col gap-8">
@@ -108,7 +112,8 @@ export default function RoomPage() {
             {data?.map((el, idx) => (
               <button
                 key={idx}
-                className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100">
+                className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100"
+              >
                 <i>{el?.icon}</i>
                 <p className="text-sm underline">{el?.title}</p>
               </button>
@@ -119,11 +124,7 @@ export default function RoomPage() {
         {/*gallery  */}
         <div className="flex gap-2 ">
           <div className="w-[50%] h-full">
-            <img
-              className="rounded-l-2xl"
-              src={dataImages[0]}
-              loading="lazy"
-            />
+            <img className="rounded-l-2xl" src={dataImages[0]} loading="lazy" />
           </div>
 
           <div className="relative w-[50%] grid grid-cols-2 gap-2">
@@ -197,9 +198,7 @@ export default function RoomPage() {
           <div className="w-full border-b-2"></div>
 
           {dataDescription?.map((el, idx) => (
-            <div
-              key={idx}
-              className="flex items-center gap-6">
+            <div key={idx} className="flex items-center gap-6">
               <i>{el?.icon}</i>
 
               <div>
@@ -237,7 +236,8 @@ export default function RoomPage() {
                   <button
                     ref={buttonRef}
                     onClick={() => setOpenModal(!openModal)}
-                    className="relative border w-full h-[56px] rounded-bl-lg border-gray-500 rounded-br-lg border-t-0 flex items-center justify-between px-4 py-2">
+                    className="relative border w-full h-[56px] rounded-bl-lg border-gray-500 rounded-br-lg border-t-0 flex items-center justify-between px-4 py-2"
+                  >
                     <div className="text-start">
                       <p className="text-xs font-bold">ผู้เข้าพัก</p>
                       <p>ผู้เข้าพัก {quantity} คน</p>
@@ -252,12 +252,14 @@ export default function RoomPage() {
                     {openModal && (
                       <div
                         ref={modalRef}
-                        onClick={(e) => e.stopPropagation()}
-                        className="absolute border-2 w-full bg-white z-[99] top-14 right-0 left-0 rounded-md p-3 flex flex-col gap-8">
+                        onClick={e => e.stopPropagation()}
+                        className="absolute border-2 w-full bg-white z-[99] top-14 right-0 left-0 rounded-md p-3 flex flex-col gap-8"
+                      >
                         {guestsData?.map((el, idx) => (
                           <div
                             key={idx}
-                            className="flex itenms-center justify-between">
+                            className="flex itenms-center justify-between"
+                          >
                             <div className="flex flex-col text-start">
                               <p className="text-sm">{el?.title1}</p>
                               <p className="text-sm">{el?.title2}</p>
@@ -279,7 +281,8 @@ export default function RoomPage() {
                                   (el.id === 1 && adult === 1) ||
                                   (el.id === 2 && child === 0) ||
                                   (el.id === 3 && infant === 0)
-                                }>
+                                }
+                              >
                                 -
                               </button>
 
@@ -308,7 +311,8 @@ export default function RoomPage() {
                                   (el.id === 1 && adult === 4) ||
                                   (el.id === 2 && child === 4) ||
                                   (el.id === 3 && infant === 4)
-                                }>
+                                }
+                              >
                                 +
                               </button>
                             </div>
@@ -322,7 +326,8 @@ export default function RoomPage() {
 
                         <button
                           onClick={() => setOpenModal(false)}
-                          className="flex items-center justify-end underline">
+                          className="flex items-center justify-end underline"
+                        >
                           ปิด
                         </button>
                       </div>
@@ -331,7 +336,8 @@ export default function RoomPage() {
                 </div>
                 <Link
                   to="/confirmAndPay"
-                  className="w-[99%] h-[48px] bg-[#ff385c] rounded-lg text-white">
+                  className="w-[99%] h-[48px] bg-[#ff385c] rounded-lg text-white"
+                >
                   <button className="w-full h-full">จอง</button>
                 </Link>
 
@@ -358,5 +364,5 @@ export default function RoomPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
