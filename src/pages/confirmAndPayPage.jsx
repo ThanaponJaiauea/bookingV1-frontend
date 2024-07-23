@@ -80,6 +80,11 @@ export default function ConfirmAndPay() {
                 <div>
                   <p className="text-xl font-medium">เลือกวิธีชำระเงิน</p>
                 </div>
+
+                <div>
+                  <div className="w-full h-[50px] border-2 border-black rounded-t-lg"></div>
+                  <div className="w-full h-[50px] border-2 rounded-b-lg"></div>
+                </div>
               </div>
 
               <div className="border-b-[1px] mt-3"></div>
