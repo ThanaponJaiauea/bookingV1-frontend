@@ -47,11 +47,31 @@ export default function ConfirmAndPay() {
                 </p>
               </div>
 
-              <div>
+              <div className="flex flex-col gap-5">
                 <div>
                   <p className="text-xl font-medium">การเดินทางของคุณ</p>
                 </div>
+
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p>วันที่</p>
+                    <p>12-17 พ.ย.</p>
+                  </div>
+
+                  <button className="underline">เปลี่ยน</button>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p>ผู้เข้าพัก</p>
+                    <p>ผู้เข้าพัก 1 คน</p>
+                  </div>
+
+                  <button className="underline">แก้ไข</button>
+                </div>
               </div>
+
+              <div className="border-b-[1px] mt-3"></div>
             </div>
 
             {/* RIGHT card */}
