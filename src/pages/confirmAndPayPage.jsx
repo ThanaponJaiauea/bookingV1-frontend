@@ -1,8 +1,11 @@
 /** @format */
 import {IoChevronBackOutline} from "react-icons/io5"
+import {FaAngleDown, FaAngleUp} from "react-icons/fa6"
 import {FaAirbnb, FaStar} from "react-icons/fa"
+import {PiCreditCardThin} from "react-icons/pi"
 
 import {Link} from "react-router-dom"
+import {useState} from "react"
 
 export default function ConfirmAndPay() {
   const mocDetailsData = [
@@ -11,6 +14,8 @@ export default function ConfirmAndPay() {
     {id: 3, label: "ค่าบริการ Airbnb", value: "฿7,169.80"},
     {id: 4, label: "ภาษี", value: "฿5,664.22"},
   ]
+
+  const [choosePayment, setChoosePayment] = useState(true)
   return (
     <div className="bg-white h-screen flex flex-col gap-10">
       <header className="h-[80px] flex flex-col gap-4">
@@ -82,12 +87,66 @@ export default function ConfirmAndPay() {
                 </div>
 
                 <div>
-                  <div className="w-full h-[50px] border-2 border-black rounded-t-lg"></div>
-                  <div className="w-full h-[50px] border-2 rounded-b-lg"></div>
+                  <div
+                    onClick={() => setChoosePayment(true)}
+                    className={`w-full border-2 ${
+                      choosePayment ? "border-black" : "border-b-0"
+                    }  rounded-t-lg flex items-center justify-between p-3`}>
+                    <p>
+                      จ่าย <span className="font-bold">฿53,692.22</span> ตอนนี้
+                    </p>
+
+                    <button
+                      className={`w-6 h-6 border-2 rounded-full  ${
+                        choosePayment ? "bg-black" : ""
+                      }`}></button>
+                  </div>
+
+                  <div
+                    onClick={() => setChoosePayment(false)}
+                    className={`w-full border-2 ${
+                      choosePayment ? "border-t-0" : "border-black"
+                    } rounded-b-lg p-3 flex items-startt justify-between`}>
+                    <p className="w-4/5 text-base">
+                      ชำระครึ่งหนึ่งตอนนี้ อีกครึ่งภายหลัง จ่ายตอนนี้ ฿10,903.37
+                      ส่วนอีก ฿10,903.37 จ่ายวันที่ 30 ต.ค.
+                      2024ไม่มีค่าธรรมเนียมเพิ่มเติม{" "}
+                      <span className="underline">ข้อมูลเพิ่มเติม</span>
+                    </p>
+
+                    <button
+                      className={`w-6 h-6 border-2 rounded-full ${
+                        choosePayment ? "" : "bg-black"
+                      }`}></button>
+                  </div>
                 </div>
               </div>
 
-              <div className="border-b-[1px] mt-3"></div>
+              <div className="border-b-[1px] mt-2"></div>
+
+              {/* BOX 4 */}
+              <div className="flex flex-col gap-5">
+                <div className="flex flex-col gap-4">
+                  <p className="text-xl font-medium">จ่ายด้วย</p>
+
+                  <div className="w-full">
+                    <button className="w-full flex items-center justify-between p-3 border-2 rounded-lg ">
+                      <div className="flex items-center gap-2">
+                        <PiCreditCardThin className="w-8 h-8" />
+                        <p>บัตรเครดิตหรือบัตรเดบิต</p>
+                      </div>
+
+                      <FaAngleDown />
+                    </button>
+
+                    <div className="w-full">
+                      <input className="w-full border-2 focus:outline-none" />
+                    </div>
+
+                    <div></div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* RIGHT card */}
