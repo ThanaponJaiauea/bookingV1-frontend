@@ -129,8 +129,8 @@ export default function ConfirmAndPay() {
                 <div className="flex flex-col gap-4">
                   <p className="text-xl font-medium">จ่ายด้วย</p>
 
-                  <div className="w-full">
-                    <button className="w-full flex items-center justify-between p-3 border-2 rounded-lg ">
+                  <div className="w-full flex flex-col gap-4">
+                    <button className="w-full flex items-center justify-between p-3 border-2 rounded-lg">
                       <div className="flex items-center gap-2">
                         <PiCreditCardThin className="w-8 h-8" />
                         <p>บัตรเครดิตหรือบัตรเดบิต</p>
@@ -139,11 +139,14 @@ export default function ConfirmAndPay() {
                       <FaAngleDown />
                     </button>
 
-                    <div className="w-full">
-                      <input className="w-full border-2 focus:outline-none" />
+                    <div className="w-full h-14">
+                      <input
+                        className="w-full h-full border-2 focus:outline-none rounded-lg px-4"
+                        placeholder="รหัสไปรษณีย์"
+                      />
                     </div>
 
-                    <div></div>
+                    
                   </div>
                 </div>
               </div>
