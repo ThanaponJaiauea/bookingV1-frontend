@@ -18,16 +18,21 @@ export default function ConfirmAndPay() {
       <div className="w-full h-screen">
         <div className="w-8/12  m-auto h-screen border-2">
           <div className="w-full flex items-center gap-4">
-            <IoChevronBackOutline className="w-4 h-4" />
+            <Link to="/room">
+              <button className="hover:bg-gray-100 rounded-full p-4">
+                <IoChevronBackOutline className="w-4 h-4" />
+              </button>
+            </Link>
+
             <p className="text-2xl font-medium">ขอจอง</p>
           </div>
 
-          <div>
+          <div className="w-full flex flex-wrap items-center justify-center gap-32">
             {/* LEFT Playment */}
-            <div></div>
+            <div className="w-2/5  border-2"></div>
 
             {/* RIGHT card */}
-            <div></div>
+            <div className="w-2/5  border-2"></div>
           </div>
         </div>
       </div>
