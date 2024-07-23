@@ -18,11 +18,12 @@ const router = createBrowserRouter([
         path: "/room",
         element: <RoomPage />,
       },
-      {
-        path: "/confirmAndPay",
-        element: <ConfirmAndPay />,
-      },
     ],
+  },
+
+  {
+    path: "/confirmAndPay",
+    element: <ConfirmAndPay />,
   },
 ])
 
