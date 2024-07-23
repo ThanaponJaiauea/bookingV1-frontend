@@ -36,6 +36,7 @@ export default function ConfirmAndPay() {
           <div className="w-full flex flex-wrap items-center justify-center gap-32">
             {/* LEFT Playment */}
             <div className="w-2/5 h-[500px] flex flex-col gap-6">
+              {/* BOX 1 */}
               <div className="border-[1px] border-gray-300 rounded-lg flex flex-col items-center p-4 gap-2">
                 <div className="w-full flex items-center justify-between">
                   <p className="text-base">นี่เป็นสิ่งที่ไม่เกิดขึ้นบ่อยนัก</p>
@@ -47,6 +48,7 @@ export default function ConfirmAndPay() {
                 </p>
               </div>
 
+              {/* BOX 2 */}
               <div className="flex flex-col gap-5">
                 <div>
                   <p className="text-xl font-medium">การเดินทางของคุณ</p>
@@ -68,6 +70,15 @@ export default function ConfirmAndPay() {
                   </div>
 
                   <button className="underline">แก้ไข</button>
+                </div>
+              </div>
+
+              <div className="border-b-[1px] mt-3"></div>
+
+              {/* BOX 3 */}
+              <div className="flex flex-col gap-5">
+                <div>
+                  <p className="text-xl font-medium">เลือกวิธีชำระเงิน</p>
                 </div>
               </div>
 
