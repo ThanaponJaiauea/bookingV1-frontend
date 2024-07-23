@@ -29,10 +29,25 @@ export default function ConfirmAndPay() {
 
           <div className="w-full flex flex-wrap items-center justify-center gap-32">
             {/* LEFT Playment */}
-            <div className="w-2/5  border-2"></div>
+            <div className="w-2/5 bg-red-200 h-[500px] border-2"></div>
 
             {/* RIGHT card */}
-            <div className="w-2/5  border-2"></div>
+            <div className="w-2/5 bg-green-200 h-[500px]  border-2">
+              <div>
+                <div>
+                  <img
+                    src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg"
+                    className="rounded-xl w-2/6"
+                  />
+                </div>
+
+                <div>
+                  <h1></h1>
+                </div>
+              </div>
+
+              <div></div>
+            </div>
           </div>
         </div>
       </div>
