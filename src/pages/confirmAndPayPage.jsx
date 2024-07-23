@@ -35,7 +35,24 @@ export default function ConfirmAndPay() {
 
           <div className="w-full flex flex-wrap items-center justify-center gap-32">
             {/* LEFT Playment */}
-            <div className="w-2/5 bg-red-200 h-[500px] border-2"></div>
+            <div className="w-2/5 h-[500px] flex flex-col gap-6">
+              <div className="border-[1px] border-gray-300 rounded-lg flex flex-col items-center p-4 gap-2">
+                <div className="w-full flex items-center justify-between">
+                  <p className="text-base">นี่เป็นสิ่งที่ไม่เกิดขึ้นบ่อยนัก</p>
+                  <FaAirbnb className="w-8 h-8 text-[#ff385c]" />
+                </div>
+
+                <p className="text-base">
+                  มีผู้สนใจจองที่พักของ Allison เป็นประจำ
+                </p>
+              </div>
+
+              <div>
+                <div>
+                  <p className="text-xl font-medium">การเดินทางของคุณ</p>
+                </div>
+              </div>
+            </div>
 
             {/* RIGHT card */}
             <div className="w-2/5 border-[1px] p-6 rounded-xl">
@@ -84,7 +101,7 @@ export default function ConfirmAndPay() {
 
               <div className="flex items-center justify-between mt-4">
                 <p className="underline">รวม (THB)</p>
-                <p className="font-bold">฿53,692.22</p>
+                <p className="font-medium">฿53,692.22</p>
               </div>
             </div>
           </div>
