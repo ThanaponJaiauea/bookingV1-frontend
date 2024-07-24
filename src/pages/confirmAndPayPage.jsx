@@ -1,11 +1,13 @@
 /** @format */
-import {IoChevronBackOutline} from "react-icons/io5"
-import {FaAngleDown, FaAngleUp} from "react-icons/fa6"
+import {IoChevronBackOutline, IoClose} from "react-icons/io5"
+import {FaAngleDown, FaAngleUp, FaCheck, FaLock} from "react-icons/fa6"
+
 import {FaAirbnb, FaStar} from "react-icons/fa"
 import {PiCreditCardThin} from "react-icons/pi"
 
 import {Link} from "react-router-dom"
 import {useState} from "react"
+import Modal from "../components/Modal/modal"
 
 export default function ConfirmAndPay() {
   const mocDetailsData = [
@@ -15,9 +17,36 @@ export default function ConfirmAndPay() {
     {id: 4, label: "ภาษี", value: "฿5,664.22"},
   ]
 
+  const mocDataCountries = [
+    "ประเทศไทย",
+    "สหรัฐอเมริกา",
+    "สหราชอาณาจักร",
+    "แคนาดา",
+    "ออสเตรเลีย",
+    "ญี่ปุ่น",
+    "จีน",
+    "เยอรมนี",
+    "ฝรั่งเศส",
+    "อินเดีย",
+    "บราซิล",
+    "รัสเซีย",
+    "เกาหลีใต้",
+    "อิตาลี",
+    "เม็กซิโก",
+    "สเปน",
+    "อินโดนีเซีย",
+    "ซาอุดีอาระเบีย",
+    "แอฟริกาใต้",
+    "ตุรกี",
+  ]
+
   const [choosePayment, setChoosePayment] = useState(true)
+  const [openModal, setOpenModal] = useState(false)
+  const [modalAdditionalInformation, setModalAdditionalInformation] =
+    useState(false)
+  const [selectCountry, setSelectCountry] = useState("ไทย")
   return (
-    <div className="bg-white h-screen flex flex-col gap-10">
+    <div className="bg-white flex flex-col gap-10">
       <header className="h-[80px] flex flex-col gap-4">
         <Link className="w-2/12 h-full flex items-center justify-center text-[#ff385c]">
           <FaAirbnb className="w-16 h-16" />
@@ -26,8 +55,8 @@ export default function ConfirmAndPay() {
         <div className="border-b-[1px]"></div>
       </header>
 
-      <div className="w-full h-screen">
-        <div className="w-8/12  m-auto h-screen border-2">
+      <div className="w-full h-full mb-20">
+        <div className="w-8/12 h-full  m-auto ">
           <div className="w-full flex items-center gap-4">
             <Link to="/room">
               <button className="hover:bg-gray-100 rounded-full p-4">
@@ -40,7 +69,7 @@ export default function ConfirmAndPay() {
 
           <div className="w-full flex flex-wrap items-center justify-center gap-32">
             {/* LEFT Playment */}
-            <div className="w-2/5 h-[500px] flex flex-col gap-6">
+            <div className="w-2/5  flex flex-col gap-6">
               {/* BOX 1 */}
               <div className="border-[1px] border-gray-300 rounded-lg flex flex-col items-center p-4 gap-2">
                 <div className="w-full flex items-center justify-between">
@@ -111,7 +140,13 @@ export default function ConfirmAndPay() {
                       ชำระครึ่งหนึ่งตอนนี้ อีกครึ่งภายหลัง จ่ายตอนนี้ ฿10,903.37
                       ส่วนอีก ฿10,903.37 จ่ายวันที่ 30 ต.ค.
                       2024ไม่มีค่าธรรมเนียมเพิ่มเติม{" "}
-                      <span className="underline cursor-pointer">
+                      <span
+                        onClick={() =>
+                          setModalAdditionalInformation(
+                            !modalAdditionalInformation
+                          )
+                        }
+                        className="underline cursor-pointer">
                         ข้อมูลเพิ่มเติม
                       </span>
                     </p>
@@ -120,6 +155,23 @@ export default function ConfirmAndPay() {
                       className={`w-6 h-6 border-2 rounded-full ${
                         choosePayment ? "" : "bg-black"
                       }`}></button>
+
+                    {modalAdditionalInformation && (
+                      <Modal>
+                        <div className="w-3/5 h-[200px] bg-white rounded-xl">
+                          <div className="p-4 md:p-5 border-b rounded-t dark:border-gray-300">
+                            <button
+                              onClick={() =>
+                                setModalAdditionalInformation(false)
+                              }
+                              type="button"
+                              className="bg-transparent hover:bg-gray-100 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center ">
+                              <IoClose className="w-5 h-5" />
+                            </button>
+                          </div>
+                        </div>
+                      </Modal>
+                    )}
                   </div>
                 </div>
               </div>
@@ -132,6 +184,7 @@ export default function ConfirmAndPay() {
                   <p className="text-xl font-medium">จ่ายด้วย</p>
 
                   <div className="w-full flex flex-col gap-4">
+                    {/* credit card */}
                     <button className="w-full flex items-center justify-between p-3 border-2 rounded-lg">
                       <div className="flex items-center gap-2">
                         <PiCreditCardThin className="w-8 h-8" />
@@ -141,14 +194,108 @@ export default function ConfirmAndPay() {
                       <FaAngleDown />
                     </button>
 
+                    {/* number card */}
+                    <div className="w-full h-full">
+                      <div className="w-full h-14 border-2 rounded-t-lg px-4 flex items-center justify-start">
+                        <p>เลขบัตร</p>
+
+                        <i>
+                          <FaLock className="w-8 h-4 text-gray-600" />
+                        </i>
+                      </div>
+
+                      <div className="w-full h-14 border-2 rounded-b-lg border-t-0 flex">
+                        <input
+                          className="w-2/4 h-full border-r-2 px-4"
+                          placeholder="วันหมดอายุ"
+                        />
+                        <input
+                          className="w-2/4 h-full border-l-0 border-r-0 px-4"
+                          placeholder="CVV"
+                        />
+                      </div>
+                    </div>
+
+                    {/* zip code */}
                     <div className="w-full h-14">
                       <input
                         className="w-full h-full border-2 focus:outline-none rounded-lg px-4"
                         placeholder="รหัสไปรษณีย์"
                       />
                     </div>
+
+                    {/* selectCountry */}
+                    <button
+                      onClick={() => setOpenModal(!openModal)}
+                      className="relative w-full h-14 flex items-center justify-between p-3 border-2 rounded-lg z-[0]">
+                      <div className="w-full text-start">
+                        <p className="text-sm">ประเท/ภูมิภาค</p>
+                        <p className="text-lg">{selectCountry}</p>
+                      </div>
+
+                      <div>{openModal ? <FaAngleUp /> : <FaAngleDown />}</div>
+                    </button>
+
+                    {openModal && (
+                      <Modal>
+                        <div className=" overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                          <div className="relative w-3/5 bg-white rounded-lg shadow">
+                            <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-300">
+                              <button
+                                onClick={() => setOpenModal(false)}
+                                type="button"
+                                className="bg-transparent hover:bg-gray-100 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center ">
+                                <IoClose className="w-5 h-5" />
+                              </button>
+
+                              <h3 className="flex-1 text-center text-lg font-semibold">
+                                ประเทศ/ภูมิภาค
+                              </h3>
+                            </div>
+
+                            <div
+                              style={{
+                                maxHeight: "800px",
+                                overflowY: "auto",
+                              }}>
+                              {mocDataCountries.map((el, idx) => (
+                                <div
+                                  key={idx}
+                                  className="p-4 md:p-5 space-y-4">
+                                  <button
+                                    onClick={() => {
+                                      setSelectCountry(el), setOpenModal(false)
+                                    }}
+                                    className="w-full text-xl text-start flex items-center justify-between">
+                                    <p
+                                      className={`${
+                                        selectCountry === el ? "font-bold" : ""
+                                      }`}>
+                                      {el}
+                                    </p>
+
+                                    {selectCountry === el && <FaCheck />}
+                                  </button>
+                                  <div className="border-b-2"></div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </Modal>
+                    )}
                   </div>
                 </div>
+              </div>
+
+              <div className="border-b-[1px] mt-2"></div>
+
+              <div>
+                <button
+                  type="button"
+                  className="text-white bg-[#ff385c] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+                  ขอจอง
+                </button>
               </div>
             </div>
 
