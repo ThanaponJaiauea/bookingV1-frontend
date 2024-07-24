@@ -111,7 +111,9 @@ export default function ConfirmAndPay() {
                       ชำระครึ่งหนึ่งตอนนี้ อีกครึ่งภายหลัง จ่ายตอนนี้ ฿10,903.37
                       ส่วนอีก ฿10,903.37 จ่ายวันที่ 30 ต.ค.
                       2024ไม่มีค่าธรรมเนียมเพิ่มเติม{" "}
-                      <span className="underline">ข้อมูลเพิ่มเติม</span>
+                      <span className="underline cursor-pointer">
+                        ข้อมูลเพิ่มเติม
+                      </span>
                     </p>
 
                     <button
@@ -145,8 +147,6 @@ export default function ConfirmAndPay() {
                         placeholder="รหัสไปรษณีย์"
                       />
                     </div>
-
-                    
                   </div>
                 </div>
               </div>
