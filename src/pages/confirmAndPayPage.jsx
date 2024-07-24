@@ -40,6 +40,26 @@ export default function ConfirmAndPay() {
     "ตุรกี",
   ]
 
+  const mocDataModalContent = [
+    {
+      id: 1,
+      title1: "ชำระเงินบางส่วนตอนนี้เลย",
+      title2: "ยืนยันการจองด้วยการชำระเงินบางส่วน",
+    },
+    {
+      id: 2,
+      title1: "ชำระเงินส่วนที่เหลือก่อนเช็คอิน",
+      title2:
+        "จะมีการเรียกเก็บเงินสำหรับการชำระเงินครั้งที่ 2 ไปทางวิธีชำระเงินเดิมที่คุณใช้",
+    },
+    {
+      id: 3,
+      title1: "การชำระเงินจะทำโดยอัตโนมัติ",
+      title2:
+        "ไม่ต้องกลัวจะลืม เราจะส่งข้อความเตือน 3 วันก่อนถึงกำหนดชำระเงินครั้งถัดไป",
+    },
+  ]
+
   const [choosePayment, setChoosePayment] = useState(true)
   const [openModal, setOpenModal] = useState(false)
   const [modalAdditionalInformation, setModalAdditionalInformation] =
@@ -48,14 +68,16 @@ export default function ConfirmAndPay() {
   return (
     <div className="bg-white flex flex-col gap-10">
       <header className="h-[80px] flex flex-col gap-4">
-        <Link className="w-2/12 h-full flex items-center justify-center text-[#ff385c]">
+        <Link
+          to="/"
+          className="w-2/12 h-full flex items-center justify-center text-[#ff385c]">
           <FaAirbnb className="w-16 h-16" />
           <p className="text-3xl font-bold">airbnb</p>
         </Link>
         <div className="border-b-[1px]"></div>
       </header>
 
-      <div className="w-full h-full mb-20">
+      <div className="w-full h-full mb-20 ">
         <div className="w-8/12 h-full  m-auto ">
           <div className="w-full flex items-center gap-4">
             <Link to="/room">
@@ -67,7 +89,7 @@ export default function ConfirmAndPay() {
             <p className="text-2xl font-medium">ขอจอง</p>
           </div>
 
-          <div className="w-full flex flex-wrap items-center justify-center gap-32">
+          <div className="w-full flex flex-wrap items-start justify-center gap-32">
             {/* LEFT Playment */}
             <div className="w-2/5  flex flex-col gap-6">
               {/* BOX 1 */}
@@ -158,7 +180,7 @@ export default function ConfirmAndPay() {
 
                     {modalAdditionalInformation && (
                       <Modal>
-                        <div className="w-3/5 h-[200px] bg-white rounded-xl">
+                        <div className="w-3/5 bg-white rounded-xl">
                           <div className="p-4 md:p-5 border-b rounded-t dark:border-gray-300">
                             <button
                               onClick={() =>
@@ -168,6 +190,27 @@ export default function ConfirmAndPay() {
                               className="bg-transparent hover:bg-gray-100 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center ">
                               <IoClose className="w-5 h-5" />
                             </button>
+                          </div>
+
+                          <div className="w-full h-full p-6 flex flex-col gap-5">
+                            <div className="flex flex-col gap-2">
+                              <h1 className="text-xl">
+                                ชำระครึ่งหนึ่งตอนนี้ อีกครึ่งภายหลัง
+                              </h1>
+                              <p>
+                                คุณสามารถชำระค่าที่พักบางส่วนได้ตั้งแต่ตอนนี้
+                                และชำระส่วนที่เหลือภายหลังโดยไม่ต้องเสียค่าธรรมเนียมเพิ่มเติม
+                              </p>
+                            </div>
+
+                            {mocDataModalContent?.map((el, idx) => (
+                              <div
+                                key={idx}
+                                className="flex flex-col">
+                                <p>{el?.title1}</p>
+                                <p>{el?.title2}</p>
+                              </div>
+                            ))}
                           </div>
                         </div>
                       </Modal>
