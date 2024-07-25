@@ -239,11 +239,14 @@ export default function ConfirmAndPay() {
 
                     {/* number card */}
                     <div className="w-full h-full">
-                      <div className="w-full h-14 border-2 rounded-t-lg px-4 flex items-center justify-start">
-                        <p>เลขบัตร</p>
+                      <div className="w-full h-14 border-2 rounded-t-lg  flex items-center justify-start">
+                        <input
+                          placeholder="เลขบัตร"
+                          className="w-full h-full px-4 focus:outline-none"
+                        />
 
                         <i>
-                          <FaLock className="w-8 h-4 text-gray-600" />
+                          <FaLock className="w-8 h-4 text-gray-600 left-0" />
                         </i>
                       </div>
 
