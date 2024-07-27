@@ -8,6 +8,7 @@ import {PiCreditCardThin} from "react-icons/pi"
 import {Link} from "react-router-dom"
 import {useState} from "react"
 import Modal from "../components/Modal/modal"
+import InputFrom from "../components/input/inputFrom"
 
 export default function ConfirmAndPay() {
   const mocDetailsData = [
@@ -65,6 +66,18 @@ export default function ConfirmAndPay() {
   const [modalAdditionalInformation, setModalAdditionalInformation] =
     useState(false)
   const [selectCountry, setSelectCountry] = useState("ไทย")
+
+  const [input, setInput] = useState({
+    numberCrad: "",
+    expiration: "",
+    cvv: "",
+    zipCode: "",
+  })
+  // console.log("input:", input)
+
+  const handleChangeInput = (e) => {
+    setInput({...input, [e.target.name]: e.target.value})
+  }
   return (
     <div className="bg-white flex flex-col gap-10">
       <header className="h-[80px] flex flex-col gap-4">
@@ -89,7 +102,7 @@ export default function ConfirmAndPay() {
             <p className="text-2xl font-medium">ขอจอง</p>
           </div>
 
-          <div className="w-full flex flex-wrap items-start justify-center gap-32">
+          <div className="w-full flex items-start justify-center gap-32">
             {/* LEFT Playment */}
             <div className="w-2/5  flex flex-col gap-6">
               {/* BOX 1 */}
@@ -240,9 +253,12 @@ export default function ConfirmAndPay() {
                     {/* number card */}
                     <div className="w-full h-full">
                       <div className="w-full h-14 border-2 rounded-t-lg  flex items-center justify-start">
-                        <input
+                        <InputFrom
+                          css="w-full h-full px-4 focus:outline-none"
                           placeholder="เลขบัตร"
-                          className="w-full h-full px-4 focus:outline-none"
+                          name="numberCrad"
+                          value={input?.numberCrad}
+                          onChange={handleChangeInput}
                         />
 
                         <i>
@@ -251,22 +267,32 @@ export default function ConfirmAndPay() {
                       </div>
 
                       <div className="w-full h-14 border-2 rounded-b-lg border-t-0 flex">
-                        <input
-                          className="w-2/4 h-full border-r-2 px-4"
+                        <InputFrom
+                          css="w-2/4 h-full border-r-2 px-4"
                           placeholder="วันหมดอายุ"
+                          name="expiration"
+                          value={input?.expiration}
+                          onChange={handleChangeInput}
                         />
-                        <input
-                          className="w-2/4 h-full border-l-0 border-r-0 px-4"
-                          placeholder="CVV"
+
+                        <InputFrom
+                          css="w-2/4 h-full border-l-0 border-r-0 px-4"
+                          placeholder="cvv"
+                          name="cvv"
+                          value={input?.cvv}
+                          onChange={handleChangeInput}
                         />
                       </div>
                     </div>
 
                     {/* zip code */}
                     <div className="w-full h-14">
-                      <input
-                        className="w-full h-full border-2 focus:outline-none rounded-lg px-4"
+                      <InputFrom
+                        css="w-full h-full border-2 focus:outline-none rounded-lg px-4"
                         placeholder="รหัสไปรษณีย์"
+                        name="zipCode"
+                        value={input?.zipCode}
+                        onChange={handleChangeInput}
                       />
                     </div>
 
