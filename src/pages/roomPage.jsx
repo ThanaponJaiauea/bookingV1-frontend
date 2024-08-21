@@ -449,11 +449,9 @@ export default function RoomPage() {
           tabindex="-1"
           className="w-full h-full fixed top-0 right-0 left-0 z-50 flex justify-center items-center md:inset-0 h-[calc(100%-1rem)] bg-black bg-opacity-30 backdrop-blur-sm">
           <div className="relative p-4 w-full max-w-2xl max-h-full">
-            <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-              <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  Gallery
-                </h3>
+            <div className="relative bg-white rounded-lg shadow">
+              <div className="flex items-center justify-between p-4 md:p-5">
+                <h3 className="text-xl font-semibold">Gallery</h3>
 
                 <button
                   onClick={() => setOpenGallery(false)}
@@ -478,20 +476,102 @@ export default function RoomPage() {
                 </button>
               </div>
 
-              <div className="p-4 md:p-5 space-y-4">
-                <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                  With less than a month to go before the European Union enacts
-                  new consumer privacy laws for its citizens, companies around
-                  the world are updating their terms of service agreements to
-                  comply.
-                </p>
-                <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                  The European Union’s General Data Protection Regulation
-                  (G.D.P.R.) goes into effect on May 25 and is meant to ensure a
-                  common set of data rights in the European Union. It requires
-                  organizations to notify users as soon as possible of high-risk
-                  data breaches that could personally affect them.
-                </p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4">
+                <div className="grid gap-4">
+                  <div>
+                    <img
+                      className="h-auto max-w-full rounded-lg"
+                      src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      className="h-auto max-w-full rounded-lg"
+                      src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      className="h-auto max-w-full rounded-lg"
+                      src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg"
+                      alt=""
+                    />
+                  </div>
+                </div>
+
+                <div className="grid gap-4">
+                  <div>
+                    <img
+                      className="h-auto max-w-full rounded-lg"
+                      src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      className="h-auto max-w-full rounded-lg"
+                      src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      className="h-auto max-w-full rounded-lg"
+                      src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg"
+                      alt=""
+                    />
+                  </div>
+                </div>
+
+                <div className="grid gap-4">
+                  <div>
+                    <img
+                      className="h-auto max-w-full rounded-lg"
+                      src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      className="h-auto max-w-full rounded-lg"
+                      src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      className="h-auto max-w-full rounded-lg"
+                      src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg"
+                      alt=""
+                    />
+                  </div>
+                </div>
+
+                <div className="grid gap-4">
+                  <div>
+                    <img
+                      className="h-auto max-w-full rounded-lg"
+                      src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      className="h-auto max-w-full rounded-lg"
+                      src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <img
+                      className="h-auto max-w-full rounded-lg"
+                      src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg"
+                      alt=""
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
