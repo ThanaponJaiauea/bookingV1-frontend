@@ -6,6 +6,7 @@ import {TbWorld} from "react-icons/tb"
 import {GiHamburgerMenu} from "react-icons/gi"
 import defaultProfileUser from "../pictures/user/logo-user.png"
 import {Link} from "react-router-dom"
+import ModalLogin from "../components/Modal/modalLogin"
 
 export default function Header() {
   const mocDataNavbar = [
@@ -26,6 +27,8 @@ export default function Header() {
   // console.log("hoveredId", hoveredId)
 
   const [open, setOpen] = useState(false)
+  const [openModalLogin, setOpenModalLogin] = useState(false)
+  console.log("openModalLogin:", openModalLogin)
 
   const handleMouseEnter = (id) => {
     setHoveredId(id)
@@ -124,7 +127,15 @@ export default function Header() {
               <div className="w-full flex flex-col">
                 {mocDataModal?.map((el, idx) => (
                   <React.Fragment key={idx}>
-                    <button className="w-full h-[50px] text-start hover:bg-gray-100 p-4 flex items-center ">
+                    <button
+                      onClick={
+                        el.title === "ลงทะเบียน"
+                          ? () => {
+                              setOpenModalLogin(!openModalLogin), setOpen(false)
+                            }
+                          : null
+                      }
+                      className="w-full h-[50px] text-start hover:bg-gray-100 p-4 flex items-center ">
                       {el?.title}
                     </button>
                     {idx === 1 && (
@@ -134,6 +145,10 @@ export default function Header() {
                 ))}
               </div>
             </div>
+          )}
+
+          {openModalLogin && (
+            <ModalLogin onClose={() => setOpenModalLogin(false)} />
           )}
         </div>
       </div>
