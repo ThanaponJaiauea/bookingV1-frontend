@@ -1,8 +1,17 @@
 /** @format */
 import {IoMdClose} from "react-icons/io"
 import InputLogReg from "../input/inputLogReg"
+import {useState} from "react"
 
 export default function ModalLogin({onClose, setStateCheck}) {
+  const [input, setInput] = useState({
+    email: "",
+    password: "",
+  })
+
+  const handleChangeInput = (e) => {
+    setInput({...input, [e.target.name]: e.target.value})
+  }
   return (
     <div className="w-full fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-center justify-center relatice z-[999]">
       <div className="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 flex flex-col gap-6">
@@ -24,29 +33,27 @@ export default function ModalLogin({onClose, setStateCheck}) {
 
           <div>
             <InputLogReg
-              htmlFor="htmlFor"
+              htmlFor="email"
               title="email"
               type="email"
               name="email"
-              value="email"
+              value={input.email}
+              onChange={handleChangeInput}
             />
           </div>
 
           <div>
-            <label
-              htmlFor="password"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              Your password
-            </label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="••••••••"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-              required
-            />
+            <div>
+              <InputLogReg
+                htmlFor="password"
+                title="password"
+                name="password"
+                value={input.password}
+                onChange={handleChangeInput}
+              />
+            </div>
           </div>
+
           <div className="flex items-start">
             <div className="flex items-start">
               <div className="flex items-center h-5">

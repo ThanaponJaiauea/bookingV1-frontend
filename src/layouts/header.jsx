@@ -29,7 +29,6 @@ export default function Header() {
 
   const [open, setOpen] = useState(false)
   const [openModalLogin, setOpenModalLogin] = useState(false)
-  console.log("openModalLogin:", openModalLogin)
 
   const [select, setSelect] = useState("ที่พัก")
 
