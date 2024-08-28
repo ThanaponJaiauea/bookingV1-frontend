@@ -7,6 +7,7 @@ import {GiHamburgerMenu} from "react-icons/gi"
 import defaultProfileUser from "../pictures/user/logo-user.png"
 import {Link} from "react-router-dom"
 import ModalLogin from "../components/Modal/modalLogin"
+import ModalRegister from "../components/Modal/modalRegister"
 
 export default function Header() {
   const mocDataNavbar = [
@@ -32,6 +33,8 @@ export default function Header() {
 
   const [select, setSelect] = useState("ที่พัก")
 
+  const [stateCheck, setStateCheck] = useState("login")
+
   const handleMouseEnter = (id) => {
     setHoveredId(id)
   }
@@ -42,6 +45,11 @@ export default function Header() {
 
   const handleSelect = (select) => {
     setSelect(select)
+  }
+
+  const handleOnClose = () => {
+    setOpenModalLogin(false)
+    setStateCheck("login")
   }
 
   const shouldHideBorder = (hoveredId, id) => {
@@ -150,9 +158,15 @@ export default function Header() {
                       onClick={
                         el.title === "ลงทะเบียน"
                           ? () => {
-                              setOpenModalLogin(!openModalLogin), setOpen(false)
+                              setOpenModalLogin(!openModalLogin),
+                                setOpen(false),
+                                setStateCheck("register")
                             }
-                          : null
+                          : () => {
+                              setOpenModalLogin(!openModalLogin),
+                                setOpen(false),
+                                setStateCheck("login")
+                            }
                       }
                       className="w-full h-[50px] text-start hover:bg-gray-100 p-4 flex items-center ">
                       {el?.title}
@@ -166,9 +180,15 @@ export default function Header() {
             </div>
           )}
 
-          {openModalLogin && (
-            <ModalLogin onClose={() => setOpenModalLogin(false)} />
-          )}
+          {openModalLogin &&
+            (stateCheck === "login" ? (
+              <ModalLogin
+                onClose={handleOnClose}
+                setStateCheck={() => setStateCheck()}
+              />
+            ) : (
+              <ModalRegister onClose={handleOnClose} />
+            ))}
         </div>
       </div>
     </div>
