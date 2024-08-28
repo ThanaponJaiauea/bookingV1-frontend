@@ -30,12 +30,18 @@ export default function Header() {
   const [openModalLogin, setOpenModalLogin] = useState(false)
   console.log("openModalLogin:", openModalLogin)
 
+  const [select, setSelect] = useState("ที่พัก")
+
   const handleMouseEnter = (id) => {
     setHoveredId(id)
   }
 
   const handleMouseLeave = () => {
     setHoveredId(null)
+  }
+
+  const handleSelect = (select) => {
+    setSelect(select)
   }
 
   const shouldHideBorder = (hoveredId, id) => {
@@ -57,8 +63,21 @@ export default function Header() {
       <div className="w-7/12 h-full flex flex-col items-center gap-6 pt-5">
         {/* TOP */}
         <div className="w-full flex items-center justify-center gap-8">
-          <p className="text-base">ที่พัก</p>
-          <p className="text-base text-[#6A6A6A]">เอ็กซ์พีเรียนซ์</p>
+          <button
+            onClick={() => handleSelect("ที่พัก")}
+            className={`text-base ${
+              select === "เอ็กซ์พีเรียนซ์" ? "text-[#6A6A6A]" : ""
+            } `}>
+            <p>ที่พัก</p>
+          </button>
+
+          <button
+            onClick={() => handleSelect("เอ็กซ์พีเรียนซ์")}
+            className={`text-base ${
+              select === "ที่พัก" ? "text-[#6A6A6A]" : ""
+            } `}>
+            <p>เอ็กซ์พีเรียนซ์</p>
+          </button>
         </div>
 
         {/* BOTTOM */}
