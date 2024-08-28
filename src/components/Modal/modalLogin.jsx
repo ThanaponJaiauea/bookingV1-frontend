@@ -36,6 +36,7 @@ export default function ModalLogin({onClose, setStateCheck}) {
               htmlFor="email"
               title="email"
               type="email"
+              placeholder="email"
               name="email"
               value={input.email}
               onChange={handleChangeInput}
@@ -43,15 +44,14 @@ export default function ModalLogin({onClose, setStateCheck}) {
           </div>
 
           <div>
-            <div>
-              <InputLogReg
-                htmlFor="password"
-                title="password"
-                name="password"
-                value={input.password}
-                onChange={handleChangeInput}
-              />
-            </div>
+            <InputLogReg
+              htmlFor="password"
+              title="password"
+              placeholder="password"
+              name="password"
+              value={input.password}
+              onChange={handleChangeInput}
+            />
           </div>
 
           <div className="flex items-start">
@@ -77,11 +77,13 @@ export default function ModalLogin({onClose, setStateCheck}) {
               Lost Password?
             </a>
           </div>
+
           <button
             type="submit"
             className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Login to your account
           </button>
+
           <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
             Not registered?{" "}
             <button
