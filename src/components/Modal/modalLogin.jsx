@@ -1,5 +1,5 @@
 /** @format */
-import {IoMdClose} from "react-icons/io"
+import {IoMdClose, IoMdEye, IoMdEyeOff} from "react-icons/io"
 import InputLogReg from "../input/inputLogReg"
 import {useState} from "react"
 
@@ -12,6 +12,7 @@ export default function ModalLogin({onClose, setStateCheck}) {
   const handleChangeInput = (e) => {
     setInput({...input, [e.target.name]: e.target.value})
   }
+
   return (
     <div className="w-full fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-center justify-center relatice z-[999]">
       <div className="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 flex flex-col gap-6">
@@ -28,7 +29,7 @@ export default function ModalLogin({onClose, setStateCheck}) {
           className="space-y-6"
           action="#">
           <h5 className="text-xl font-medium text-gray-900 dark:text-white">
-            Sign in to our platform
+            Sign in to our <span className="text-[#ff385c]">Airbnb</span>
           </h5>
 
           <div>
@@ -47,6 +48,7 @@ export default function ModalLogin({onClose, setStateCheck}) {
             <InputLogReg
               htmlFor="password"
               title="password"
+              type="password"
               placeholder="password"
               name="password"
               value={input.password}

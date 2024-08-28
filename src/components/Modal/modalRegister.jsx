@@ -1,11 +1,18 @@
 /** @format */
 import {IoMdClose} from "react-icons/io"
+import {IoMdArrowBack} from "react-icons/io"
 
-export default function ModalRegister({onClose}) {
+export default function ModalRegister({onClose, setStateCheck}) {
   return (
     <div className="w-full fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-center justify-center relatice z-[999]">
       <div className="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 flex flex-col gap-6">
-        <div className="w-full flex items-center justify-end">
+        <div className="w-full flex items-center justify-between">
+          <button onClick={() => setStateCheck("login")}>
+            <i className="text-xl text-white">
+              <IoMdArrowBack />
+            </i>
+          </button>
+
           <button
             onClick={() => {
               onClose()
@@ -20,6 +27,7 @@ export default function ModalRegister({onClose}) {
           <h5 className="text-xl font-medium text-gray-900 dark:text-white">
             Register
           </h5>
+
           <div>
             <label
               htmlFor="email"
@@ -32,7 +40,6 @@ export default function ModalRegister({onClose}) {
               id="email"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
               placeholder="name@company.com"
-              required
             />
           </div>
 
@@ -48,7 +55,6 @@ export default function ModalRegister({onClose}) {
               id="password"
               placeholder="password"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-              required
             />
           </div>
 

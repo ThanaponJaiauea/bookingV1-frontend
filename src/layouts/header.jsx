@@ -186,7 +186,10 @@ export default function Header() {
                 setStateCheck={() => setStateCheck()}
               />
             ) : (
-              <ModalRegister onClose={handleOnClose} />
+              <ModalRegister
+                onClose={handleOnClose}
+                setStateCheck={setStateCheck}
+              />
             ))}
         </div>
       </div>
