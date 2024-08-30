@@ -8,8 +8,12 @@ import defaultProfileUser from "../pictures/user/logo-user.png"
 import {Link} from "react-router-dom"
 import ModalLogin from "../components/Modal/modalLogin"
 import ModalRegister from "../components/Modal/modalRegister"
+import useAuth from "../hooks/useAuth"
 
 export default function Header() {
+  const {authenticatedUser} = useAuth()
+  console.log("authenticatedUser:", authenticatedUser)
+
   const mocDataNavbar = [
     {id: 1, header: "สถานที่", title: "ค้นหาปลายทาง"},
     {id: 2, header: "เช็คอิน", title: "เพิ่มวันที่"},
