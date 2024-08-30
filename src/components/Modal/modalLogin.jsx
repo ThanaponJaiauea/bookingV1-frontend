@@ -2,12 +2,29 @@
 import {IoMdClose, IoMdEye, IoMdEyeOff} from "react-icons/io"
 import InputLogReg from "../input/inputLogReg"
 import {useState} from "react"
+import useAuth from "../../hooks/useAuth"
+import {toast} from "react-toastify"
 
 export default function ModalLogin({onClose, setStateCheck}) {
+  const {logIn} = useAuth()
+
   const [input, setInput] = useState({
     email: "",
     password: "",
   })
+
+  const handleSubmitForm = async (e) => {
+    try {
+      e.preventDefault()
+      await logIn(input.email, input.password)
+      onClose()
+
+      toast.success("login success")
+    } catch (err) {
+      console.log(err)
+      toast.error(err.response?.data.message)
+    }
+  }
 
   const handleChangeInput = (e) => {
     setInput({...input, [e.target.name]: e.target.value})
@@ -27,7 +44,8 @@ export default function ModalLogin({onClose, setStateCheck}) {
 
         <form
           className="space-y-6"
-          action="#">
+          action="#"
+          onSubmit={handleSubmitForm}>
           <h5 className="text-xl font-medium text-gray-900 dark:text-white">
             Sign in to our <span className="text-[#ff385c]">Airbnb</span>
           </h5>
