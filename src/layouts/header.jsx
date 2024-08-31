@@ -155,30 +155,37 @@ export default function Header() {
           {open && (
             <div className="absolute w-[14%] top-20 right-20 bg-white shadow-lg rounded-lg overflow-hidden z-[9999]">
               <div className="w-full flex flex-col">
-                {mocDataModal?.map((el, idx) => (
-                  <React.Fragment key={idx}>
-                    <button
-                      onClick={
-                        el.title === "ลงทะเบียน"
-                          ? () => {
-                              setOpenModalLogin(!openModalLogin),
-                                setOpen(false),
-                                setStateCheck("register")
-                            }
-                          : () => {
-                              setOpenModalLogin(!openModalLogin),
-                                setOpen(false),
-                                setStateCheck("login")
-                            }
-                      }
-                      className="w-full h-[50px] text-start hover:bg-gray-100 p-4 flex items-center ">
-                      {el?.title}
-                    </button>
-                    {idx === 1 && (
-                      <div className="w-full border-[1px] mt-2 mb-2"></div>
-                    )}
-                  </React.Fragment>
-                ))}
+                {mocDataModal
+                  ?.filter((el) => {
+                    return !(
+                      authenticatedUser &&
+                      (el.title === "ลงทะเบียน" || el.title === "เข้าสู่ระบบ")
+                    )
+                  })
+                  .map((el, idx) => (
+                    <React.Fragment key={idx}>
+                      <button
+                        onClick={
+                          el.title === "ลงทะเบียน"
+                            ? () => {
+                                setOpenModalLogin(!openModalLogin),
+                                  setOpen(false),
+                                  setStateCheck("register")
+                              }
+                            : () => {
+                                setOpenModalLogin(!openModalLogin),
+                                  setOpen(false),
+                                  setStateCheck("login")
+                              }
+                        }
+                        className="w-full h-[50px] text-start hover:bg-gray-100 p-4 flex items-center ">
+                        {el?.title}
+                      </button>
+                      {idx === 1 && (
+                        <div className="w-full border-[1px] mt-2 mb-2"></div>
+                      )}
+                    </React.Fragment>
+                  ))}
               </div>
             </div>
           )}
