@@ -1,6 +1,6 @@
 /** @format */
-import {IoMdClose} from "react-icons/io"
-import {IoMdArrowBack} from "react-icons/io"
+import {IoMdClose} from "react-icons/io";
+import {IoMdArrowBack} from "react-icons/io";
 
 export default function ModalRegister({onClose, setStateCheck}) {
   return (
@@ -12,10 +12,9 @@ export default function ModalRegister({onClose, setStateCheck}) {
               <IoMdArrowBack />
             </i>
           </button>
-
           <button
             onClick={() => {
-              onClose()
+              onClose();
             }}>
             <IoMdClose className="w-5 h-5 text-lg text-white hover:bg-white hover:text-black hover:rounded-full" />
           </button>
@@ -66,5 +65,5 @@ export default function ModalRegister({onClose, setStateCheck}) {
         </form>
       </div>
     </div>
-  )
+  );
 }

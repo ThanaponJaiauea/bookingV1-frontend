@@ -1,34 +1,34 @@
 /** @format */
-import {IoMdClose, IoMdEye, IoMdEyeOff} from "react-icons/io"
-import InputLogReg from "../input/inputLogReg"
-import {useState} from "react"
-import useAuth from "../../hooks/useAuth"
-import {toast} from "react-toastify"
+import {IoMdClose} from "react-icons/io";
+import InputLogReg from "../input/inputLogReg";
+import {useState} from "react";
+import useAuth from "../../hooks/useAuth";
+import {toast} from "react-toastify";
 
 export default function ModalLogin({onClose, setStateCheck}) {
-  const {logIn} = useAuth()
+  const {logIn} = useAuth();
 
   const [input, setInput] = useState({
     email: "",
     password: "",
-  })
+  });
 
   const handleSubmitForm = async (e) => {
     try {
-      e.preventDefault()
-      await logIn(input.email, input.password)
-      onClose()
+      e.preventDefault();
+      await logIn(input.email, input.password);
+      onClose();
 
-      toast.success("login success")
+      toast.success("login success");
     } catch (err) {
-      console.log(err)
-      toast.error(err.response?.data.message)
+      console.log(err);
+      toast.error(err.response?.data.message);
     }
-  }
+  };
 
   const handleChangeInput = (e) => {
-    setInput({...input, [e.target.name]: e.target.value})
-  }
+    setInput({...input, [e.target.name]: e.target.value});
+  };
 
   return (
     <div className="w-full fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-center justify-center relatice z-[999]">
@@ -36,7 +36,7 @@ export default function ModalLogin({onClose, setStateCheck}) {
         <div className="w-full flex items-center justify-end">
           <button
             onClick={() => {
-              onClose()
+              onClose();
             }}>
             <IoMdClose className="w-5 h-5 text-lg text-white hover:bg-white hover:text-black hover:rounded-full" />
           </button>
@@ -115,5 +115,5 @@ export default function ModalLogin({onClose, setStateCheck}) {
         </form>
       </div>
     </div>
-  )
+  );
 }
